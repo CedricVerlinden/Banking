@@ -198,7 +198,7 @@ public class DashboardController implements Initializable {
             if (amount <= 0.0) {
                 throw new IllegalArgumentException();
             }
-            Connection conn = MySQLConnect.connectDB();
+            Connection conn = MySQLConnect.connect();
             String sql = "UPDATE users SET balance = ? Where email = ?";
             assert conn != null;
             pst = conn.prepareStatement(sql);
@@ -234,7 +234,7 @@ public class DashboardController implements Initializable {
         double total = currentUser.getBalance() - amount;
         currentUser.setBalance(total);
         try {
-            Connection conn = MySQLConnect.connectDB();
+            Connection conn = MySQLConnect.connect();
             String sql = "UPDATE users SET balance = ? Where email = ?";
             assert conn != null;
             pst = conn.prepareStatement(sql);
@@ -272,7 +272,7 @@ public class DashboardController implements Initializable {
             throw new IllegalArgumentException();
         }
         int recieverAccNumber = Integer.parseInt(recieverTextField.getText());
-        Connection conn = MySQLConnect.connectDB();
+        Connection conn = MySQLConnect.connect();
         String sql = "SELECT* FROM users WHERE account_number = ?";
         assert conn != null;
         pst = conn.prepareStatement(sql);
@@ -345,8 +345,7 @@ public class DashboardController implements Initializable {
         int responseCode = request.getResponseCode();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            JsonParser jp = new JsonParser();
-            JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
+            JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getContent()));
             JsonObject jsonobj = root.getAsJsonObject();
             String req_result = jsonobj.get("conversion_rate").getAsString();
             result = Double.parseDouble(req_result);

@@ -13,10 +13,13 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         Scene scene = new Scene(root);
+
         stage.setScene(scene);
         stage.setResizable(false);
+
         stage.setTitle("Banking");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("icons/icon.png")));
+        
         stage.show();
     }
 

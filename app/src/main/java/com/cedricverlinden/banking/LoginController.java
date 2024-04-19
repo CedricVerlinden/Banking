@@ -19,8 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -99,7 +97,7 @@ public class LoginController implements Initializable {
     String textFillError = "-fx-text-fill: RED";
 
     private boolean emailAlreadyExists() throws SQLException {
-        conn = MySQLConnect.connectDB();
+        conn = MySQLConnect.connect();
         String sql = "Select * From users Where email = ?";
         assert conn != null;
         pst = conn.prepareStatement(sql);
@@ -109,7 +107,7 @@ public class LoginController implements Initializable {
     }
 
     private boolean accountNumberAlreadyExists() throws SQLException {
-        conn = MySQLConnect.connectDB();
+        conn = MySQLConnect.connect();
         String sql = "Select * From users Where account_number = ?";
         assert conn != null;
         pst = conn.prepareStatement(sql);
@@ -187,7 +185,7 @@ public class LoginController implements Initializable {
         }
         String sql = "Select * From users Where email = ? And password = ?";
         try {
-            conn = MySQLConnect.connectDB();
+            conn = MySQLConnect.connect();
             assert conn != null;
             pst = conn.prepareStatement(sql);
             pst.setString(1, email.getText());
@@ -217,7 +215,7 @@ public class LoginController implements Initializable {
                 String sql = "insert into users (name, email, account_number,balance ,dob, password) values (?,?,?,?,?,?)";
                 User newUser = new User(signupName.getText(), signupEmail.getText(), signupDOB.getValue(),
                         Integer.parseInt(signupAccountNumber.getText()));
-                conn = MySQLConnect.connectDB();
+                conn = MySQLConnect.connect();
                 assert conn != null;
                 pst = conn.prepareStatement(sql);
                 pst.setString(1, newUser.getName());
