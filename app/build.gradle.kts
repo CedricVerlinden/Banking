@@ -10,6 +10,7 @@ repositories {
 dependencies {
     implementation("io.github.palexdev:materialfx:11.17.0")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.mysql:mysql-connector-j:8.3.0")
 }
 
 application {
