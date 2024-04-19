@@ -1,8 +1,8 @@
 module banking {
     requires javafx.fxml;
     requires com.google.gson;
-    requires java.sql;
     requires MaterialFX;
+    requires transitive java.sql;
     requires transitive javafx.controls;
     requires transitive javafx.graphics;
 
