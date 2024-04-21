@@ -14,8 +14,8 @@ dependencies {
 }
 
 application {
-    mainClass.set("com.cedricverlinden.banking.App")
-    mainModule.set("banking")
+    mainClass.set("com.cedricverlinden.banking.Banking")
+    mainModule.set("com.cedricverlinden.banking")
 }
 
 javafx {
