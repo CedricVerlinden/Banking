@@ -1,4 +1,4 @@
-package com.cedricverlinden.banking;
+package com.cedricverlinden.banking.controllers;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -25,12 +25,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-public class LoginController implements Initializable {
+import com.cedricverlinden.banking.database.Database;
+import com.cedricverlinden.banking.models.User;
 
-    // private final Image closedEye = new
-    // Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/eyes_closed.png")));
-    // private final Image openEye = new
-    // Image(Objects.requireNonNull(getClass().getResourceAsStream("icons/eyes_open.png")));
+public class LoginController implements Initializable {
 
     @FXML
     ImageView eyesImageView;
@@ -97,7 +95,7 @@ public class LoginController implements Initializable {
     String textFillError = "-fx-text-fill: RED";
 
     private boolean emailAlreadyExists() throws SQLException {
-        conn = MySQLConnect.connect();
+        conn = Database.connect();
         String sql = "Select * From users Where email = ?";
         assert conn != null;
         pst = conn.prepareStatement(sql);
@@ -107,7 +105,7 @@ public class LoginController implements Initializable {
     }
 
     private boolean accountNumberAlreadyExists() throws SQLException {
-        conn = MySQLConnect.connect();
+        conn = Database.connect();
         String sql = "Select * From users Where account_number = ?";
         assert conn != null;
         pst = conn.prepareStatement(sql);
@@ -185,7 +183,7 @@ public class LoginController implements Initializable {
         }
         String sql = "Select * From users Where email = ? And password = ?";
         try {
-            conn = MySQLConnect.connect();
+            conn = Database.connect();
             assert conn != null;
             pst = conn.prepareStatement(sql);
             pst.setString(1, email.getText());
@@ -215,14 +213,14 @@ public class LoginController implements Initializable {
                 String sql = "insert into users (name, email, account_number,balance ,dob, password) values (?,?,?,?,?,?)";
                 User newUser = new User(signupName.getText(), signupEmail.getText(), signupDOB.getValue(),
                         Integer.parseInt(signupAccountNumber.getText()));
-                conn = MySQLConnect.connect();
+                conn = Database.connect();
                 assert conn != null;
                 pst = conn.prepareStatement(sql);
-                pst.setString(1, newUser.getName());
+                pst.setString(1, newUser.getFullName());
                 pst.setString(2, newUser.getEmail());
                 pst.setInt(3, newUser.getAcc_num());
                 pst.setDouble(4, newUser.getBalance());
-                pst.setDate(5, Date.valueOf(newUser.getDob()));
+                pst.setDate(5, Date.valueOf(newUser.getDateOfBirth()));
                 pst.setString(6, signupPassword.getText());
                 pst.execute();
                 JOptionPane.showMessageDialog(null, "Successful SignUp!");

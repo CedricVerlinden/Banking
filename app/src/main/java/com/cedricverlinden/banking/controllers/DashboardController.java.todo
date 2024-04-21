@@ -1,4 +1,4 @@
-package com.cedricverlinden.banking;
+package com.cedricverlinden.banking.controllers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import com.cedricverlinden.banking.database.Database;
+import com.cedricverlinden.banking.models.User;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -184,8 +187,8 @@ public class DashboardController implements Initializable {
     PreparedStatement pst = null;
 
     public void setLabels() {
-        name.setText(currentUser.getName());
-        dob.setText(currentUser.getDob().toString());
+        name.setText(currentUser.getFullName());
+        dob.setText(currentUser.getDateOfBirth().toString());
         accNumber.setText(Integer.toString(currentUser.getAcc_num()));
         balance.setText(String.format("%.2f", currentUser.getBalance()) + "$");
         emailLabel.setText(currentUser.getEmail());
@@ -198,7 +201,7 @@ public class DashboardController implements Initializable {
             if (amount <= 0.0) {
                 throw new IllegalArgumentException();
             }
-            Connection conn = MySQLConnect.connect();
+            Connection conn = Database.connect();
             String sql = "UPDATE users SET balance = ? Where email = ?";
             assert conn != null;
             pst = conn.prepareStatement(sql);
@@ -234,7 +237,7 @@ public class DashboardController implements Initializable {
         double total = currentUser.getBalance() - amount;
         currentUser.setBalance(total);
         try {
-            Connection conn = MySQLConnect.connect();
+            Connection conn = Database.connect();
             String sql = "UPDATE users SET balance = ? Where email = ?";
             assert conn != null;
             pst = conn.prepareStatement(sql);
@@ -272,7 +275,7 @@ public class DashboardController implements Initializable {
             throw new IllegalArgumentException();
         }
         int recieverAccNumber = Integer.parseInt(recieverTextField.getText());
-        Connection conn = MySQLConnect.connect();
+        Connection conn = Database.connect();
         String sql = "SELECT* FROM users WHERE account_number = ?";
         assert conn != null;
         pst = conn.prepareStatement(sql);
