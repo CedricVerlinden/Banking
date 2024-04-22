@@ -7,25 +7,30 @@ import javafx.stage.Stage;
 
 public class Banking extends Application {
 
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Banking");
+	@Override
+	public void start(Stage primaryStage) {
+		primaryStage.setTitle("Banking");
 
-        StackPane root = new StackPane();
-        Scene scene = new Scene(root, 800, 600);
+		StackPane root = new StackPane();
+		Scene scene = new Scene(root, 1280, 720);
 
-        primaryStage.setScene(scene);
-        primaryStage.show();
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.centerOnScreen();
 
-        ScreenManager screenManager = new ScreenManager(root);
+		ScreenManager screenManager = new ScreenManager(root);
 
-        screenManager.addScreen("Home", "fxml/HomeScreen.fxml");
-        screenManager.addScreen("Profile", "fxml/ProfileScreen.fxml");
+		// Account screens
+		screenManager.addScreen("Login", "fxml/LoginScreen.fxml");
+		screenManager.addScreen("Register", "fxml/RegisterScreen.fxml");
 
-        screenManager.setScreen("Home");
-    }
+		// Dashboard screens
+		screenManager.addScreen("Home", "fxml/HomeScreen.fxml");
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+		screenManager.setScreen("Login");
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 }
