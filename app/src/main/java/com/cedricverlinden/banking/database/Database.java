@@ -5,9 +5,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.UUID;
+
+import com.cedricverlinden.banking.models.Role;
+import com.cedricverlinden.banking.models.User;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class Database {
-    public static Connection connect() {
+
+    private Connection connection;
+
+    public Database() {
         try {
             Properties properties = new Properties();
             properties.load(Connection.class.getClassLoader().getResourceAsStream("database.properties"));
@@ -18,7 +28,7 @@ public class Database {
             String password = properties.getProperty("jdbc.password");
 
             Class.forName(driver);
-            return DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url, username, password);
 
         } catch (IOException e) {
             System.out.println("Failed to load properties file");
@@ -27,7 +37,38 @@ public class Database {
         } catch (SQLException e) {
             System.out.println("Failed to connect to database");
         }
+    }
 
-        return null;
+    public void createUser(User user) {
+        String identifier = UUID.randomUUID().toString();
+        String dateOfBirth = user.getDateOfBirth().toString();
+
+        String sql = "INSERT INTO users (id, role, firstname, lastname, email, phonenumber, address, password, dateOfBirth) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, identifier);
+            ps.setString(2, Role.CLIENT.toString());
+            ps.setString(3, user.getFirstName());
+            ps.setString(4, user.getLastName());
+            ps.setString(5, user.getEmail());
+            ps.setString(6, user.getPhoneNumber());
+            ps.setString(7, user.getAddress());
+            ps.setString(8, user.getPassword());
+            ps.setString(9, dateOfBirth);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getUsers() {
+        String sql = "SELECT * FROM users";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                System.out.println("User ID: " + rs.getInt("id") + ", Name: " + rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
