@@ -6,7 +6,11 @@ import com.cedricverlinden.banking.database.Database;
 public class BaseController {
 
     private ScreenManager screenManager;
-    private Database database;
+    private final Database database;
+
+    public BaseController() {
+        this.database = Database.getInstance();
+    }
 
     public void setScreenManager(ScreenManager screenManager) {
         this.screenManager = screenManager;

@@ -1,42 +1,54 @@
 package com.cedricverlinden.banking.database;
 
-import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import com.cedricverlinden.banking.models.Account;
 import com.cedricverlinden.banking.models.Role;
 import com.cedricverlinden.banking.models.User;
+import com.cedricverlinden.banking.utils.Hasher;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Database {
 
+    private static Database instance;
     private Connection connection;
 
     public Database() {
         try {
-            Properties properties = new Properties();
-            properties.load(Connection.class.getClassLoader().getResourceAsStream("database.properties"));
-
-            String driver = properties.getProperty("jdbc.driver");
-            String url = properties.getProperty("jdbc.url");
-            String username = properties.getProperty("jdbc.username");
-            String password = properties.getProperty("jdbc.password");
+            String driver = "com.mysql.cj.jdbc.Driver";
+            String url = "jdbc:mysql://localhost:3306/banking";
+            String username = "root";
+            String password = "";
 
             Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
 
-        } catch (IOException e) {
-            System.out.println("Failed to load properties file");
         } catch (ClassNotFoundException e) {
             System.out.println("Failed to load driver");
         } catch (SQLException e) {
             System.out.println("Failed to connect to database");
         }
+    }
+
+    public static synchronized Database getInstance() {
+        if (instance == null) {
+            instance = new Database();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 
     public void createUser(User user) {
@@ -58,6 +70,41 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public User verifyUser(String userEmail, String userPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, userEmail);
+            ResultSet rs = pstmt.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+
+            String password = rs.getString("password");
+            boolean valid = Hasher.verifyPassword(userPassword, password.getBytes());
+
+            if (!valid) {
+                return null;
+            }
+
+            // String id = rs.getString("id");
+            Role role = Role.valueOf(rs.getString("role"));
+            String firstname = rs.getString("firstname");
+            String lastname = rs.getString("lastname");
+            String email = rs.getString("email");
+            String phonenumber = rs.getString("phonenumber");
+            String address = rs.getString("address");
+            LocalDate dateOfBirth = LocalDate.parse(rs.getString("dateOfBirth"));
+
+            List<Account> accounts = new ArrayList<>();
+            
+            return new User(role, firstname, lastname, email, phonenumber, address, accounts, dateOfBirth);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public void getUsers() {
