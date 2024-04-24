@@ -10,4 +10,11 @@ public class LoginController extends BaseController {
             getScreenManager().setScreen("Register");
         }
     }
+
+    @FXML
+    private void login() {
+        if (getScreenManager() != null) {
+            getScreenManager().setScreen("Home");
+        }
+    }
 }
