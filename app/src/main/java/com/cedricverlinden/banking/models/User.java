@@ -37,9 +37,21 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.address = address;
 
-        byte[] salt = Hasher.generateSalt();
-        this.password = Hasher.bytesToBase64(Hasher.hashPassword(password, salt));
+        this.password = Hasher.bytesToBase64(Hasher.hashPassword(password));
 
+        this.accounts = accounts;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public User(Role role, String firstName, String lastName, String email, String phoneNumber, String address,
+            List<Account> accounts, LocalDate dateOfBirth)
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
         this.accounts = accounts;
         this.dateOfBirth = dateOfBirth;
     }
