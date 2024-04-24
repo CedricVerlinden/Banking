@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -29,7 +30,7 @@
                      <Font name="Poppins Black" size="48.0" />
                   </font>
                </Text>
-               <Text fill="GOLD" strokeType="OUTSIDE" strokeWidth="0.0" style="font: uppercase;" text="SECURE YOUR FUTURE, TODAY." wrappingWidth="353.11199951171875">
+               <Text fill="GOLD" strokeType="OUTSIDE" strokeWidth="0.0" text="SECURE YOUR FUTURE, TODAY." wrappingWidth="353.11199951171875">
                   <font>
                      <Font name="Poppins Light" size="24.0" />
                   </font>
@@ -38,64 +39,174 @@
          </VBox>
       </children></Pane>
     <Pane fx:id="loginPane" layoutX="640.0" prefHeight="720.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <Text layoutX="114.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register a new account">
+      <Text layoutX="103.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register a new account">
          <font>
             <Font name="Poppins ExtraBold" size="36.0" />
          </font>
       </Text>
-        <VBox layoutX="160.0" layoutY="268.0" spacing="24.0">
-            <VBox spacing="14.0">
-                <VBox spacing="4.0">
-                    <Label text="Email">
-                        <font>
-                            <Font name="Poppins Regular" size="20.0" />
-                        </font>
-                    </Label>
-                    <TextField prefWidth="320.0" promptText="email@example.com">
-                        <font>
-                            <Font name="Poppins Regular" size="18.0" />
-                        </font>
-                    </TextField>
-                </VBox>
-                <VBox spacing="4.0">
-                    <Label text="Password">
-                        <font>
-                            <Font name="Poppins Regular" size="20.0" />
-                        </font>
-                    </Label>
-                    <PasswordField prefWidth="320.0" promptText="Make sure it's correct">
-                        <font>
-                            <Font name="Poppins Regular" size="18.0" />
-                        </font>
-                    </PasswordField>
-                </VBox>
+      <VBox layoutX="28.0" layoutY="181.0" spacing="32.0">
+         <children>
+            <VBox spacing="24.0">
+               <children>
+                  <HBox spacing="24.0">
+                     <children>
+                            <VBox spacing="4.0">
+                                <Label text="Firstname">
+                                    <font>
+                                        <Font name="Poppins Regular" size="20.0" />
+                                    </font>
+                                </Label>
+                                <TextField id="firstname" prefWidth="280.0" promptText="John" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                    <font>
+                                        <Font name="Poppins Regular" size="18.0" />
+                                    </font>
+                                </TextField>
+                            </VBox>
+                            <VBox spacing="4.0">
+                                <Label text="Lastname">
+                                    <font>
+                                        <Font name="Poppins Regular" size="20.0" />
+                                    </font>
+                                </Label>
+                           <TextField id="lastname" prefWidth="280.0" promptText="Smith" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                              <font>
+                                 <Font name="Poppins Regular" size="18.0" />
+                              </font>
+                           </TextField>
+                            </VBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="24.0">
+                     <children>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label text="Email">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField id="email" prefWidth="280.0" promptText="john.smith@example.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label text="Phone">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField id="phone" prefWidth="280.0" promptText="+12 345 678 910" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="24.0">
+                     <children>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label text="Address">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <TextField id="street" prefWidth="190.0" promptText="Baker Street" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                       <font>
+                                          <Font name="Poppins Regular" size="18.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField id="number" prefWidth="80.0" promptText="221B" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                       <font>
+                                          <Font name="Poppins Regular" size="18.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label text="Date of Birth">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker id="dateOfBirth" prefHeight="40.0" prefWidth="280.0" promptText="06 / 01 / 1853" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;" styleClass="date-picker" stylesheets="@../css/styles.css" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="24.0">
+                     <children>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label text="Password">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField id="password" prefHeight="40.0" prefWidth="280.0" promptText="Something good" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                              </PasswordField>
+                              <HBox spacing="10.0" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label text="Confirm password">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField id="passwordConfirmation" prefHeight="40.0" prefWidth="280.0" promptText="Repeat something good" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-         <VBox alignment="CENTER" spacing="8.0">
-            <children>
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="320.0" text="Register">
-                      <font>
-                          <Font name="Poppins Regular" size="20.0" />
-                      </font>
-                  </Button>
-               <HBox alignment="CENTER" spacing="4.0">
-                  <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?">
-                        <font>
-                           <Font name="Poppins Light" size="14.0" />
-                        </font>
-                     </Text>
-                     <Text fill="#4289b9" onMouseClicked="#alreadyHasAccount" strokeType="OUTSIDE" strokeWidth="0.0" text="Login here">
-                        <font>
-                           <Font name="Poppins Light" size="14.0" />
-                        </font>
-                        <cursor>
-                           <Cursor fx:constant="HAND" />
-                        </cursor>
-                     </Text>
-                  </children>
-               </HBox>
-            </children>
-         </VBox>
-        </VBox>
+            <VBox alignment="CENTER" spacing="8.0">
+               <children>
+                     <Button mnemonicParsing="false" onAction="#registerNewUser" prefHeight="39.0" prefWidth="320.0" style="-fx-background-color: rgb(26, 86, 219);" text="Register" textFill="WHITE">
+                         <font>
+                             <Font name="Poppins Regular" size="20.0" />
+                         </font>
+                     </Button>
+                  <HBox alignment="CENTER" spacing="4.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account?">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#4289b9" onMouseClicked="#alreadyHasAccount" strokeType="OUTSIDE" strokeWidth="0.0" text="Login here">
+                           <font>
+                              <Font name="Poppins Light" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
     </Pane>
 </AnchorPane>
