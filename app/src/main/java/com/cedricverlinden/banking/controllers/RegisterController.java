@@ -11,6 +11,7 @@ import com.cedricverlinden.banking.models.Role;
 import com.cedricverlinden.banking.models.User;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -35,7 +36,7 @@ public class RegisterController extends BaseController {
     private TextField number;
 
     @FXML
-    private LocalDate dateOfBirth;
+    private DatePicker dateOfBirth;
 
     @FXML
     private PasswordField password;
@@ -51,20 +52,13 @@ public class RegisterController extends BaseController {
         String phone = this.phone.getText();
         String street = this.street.getText();
         String number = this.number.getText();
-        LocalDate dateOfBirth = this.dateOfBirth;
+        LocalDate dateOfBirth = this.dateOfBirth.getValue();
         String password = this.password.getText();
         String passwordConfirmation = this.passwordConfirmation.getText();
 
         List<Account> accounts = new ArrayList<>();
 
         if (!password.equals(passwordConfirmation)) {
-            this.firstname.clear();
-            this.lastname.clear();
-            this.email.clear();
-            this.phone.clear();
-            this.street.clear();
-            this.number.clear();
-            this.dateOfBirth = null;
             this.password.clear();
             this.passwordConfirmation.clear();
             return;
