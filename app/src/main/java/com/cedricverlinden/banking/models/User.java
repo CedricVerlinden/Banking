@@ -1,9 +1,15 @@
 package com.cedricverlinden.banking.models;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.cedricverlinden.banking.utils.Hasher;
+
 public class User {
+
+    private Role role;
 
     private String firstName;
     private String lastName;
@@ -16,20 +22,33 @@ public class User {
     private List<Account> accounts;
 
     private LocalDate dateOfBirth;
-    private LocalDate lastLogin;
-    
-    public User() {}
 
-    public User(String firstName, String lastName, String email, String phoneNumber, String address, String password, List<Account> accounts, LocalDate dateOfBirth, LocalDate lastLogin) {
+    public User() {
+    }
+
+    public User(Role role, String firstName, String lastName, String email, String phoneNumber, String address,
+            String password,
+            List<Account> accounts, LocalDate dateOfBirth)
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
+        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.password = password;
+
+        byte[] salt = Hasher.generateSalt();
+        this.password = Hasher.bytesToBase64(Hasher.hashPassword(password, salt));
+
         this.accounts = accounts;
         this.dateOfBirth = dateOfBirth;
-        this.lastLogin = lastLogin;
+    }
+
+    /*
+     * Role Details
+     */
+    public Role getRole() {
+        return role;
     }
 
     /*
@@ -86,10 +105,6 @@ public class User {
      */
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public LocalDate getLastLogin() {
-        return lastLogin;
     }
 
 }
