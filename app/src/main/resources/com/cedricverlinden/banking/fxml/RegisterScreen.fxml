@@ -56,7 +56,7 @@
                                         <Font name="Poppins Regular" size="20.0" />
                                     </font>
                                 </Label>
-                                <TextField id="firstname" prefWidth="280.0" promptText="John" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                <TextField fx:id="firstname" prefWidth="280.0" promptText="John" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                                     <font>
                                         <Font name="Poppins Regular" size="18.0" />
                                     </font>
@@ -68,7 +68,7 @@
                                         <Font name="Poppins Regular" size="20.0" />
                                     </font>
                                 </Label>
-                           <TextField id="lastname" prefWidth="280.0" promptText="Smith" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                           <TextField fx:id="lastname" prefWidth="280.0" promptText="Smith" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                               <font>
                                  <Font name="Poppins Regular" size="18.0" />
                               </font>
@@ -85,7 +85,7 @@
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField id="email" prefWidth="280.0" promptText="john.smith@example.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                              <TextField fx:id="email" prefWidth="280.0" promptText="john.smith@example.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                                  <font>
                                     <Font name="Poppins Regular" size="18.0" />
                                  </font>
@@ -99,7 +99,7 @@
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <TextField id="phone" prefWidth="280.0" promptText="+12 345 678 910" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                              <TextField fx:id="phone" prefWidth="280.0" promptText="+12 345 678 910" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                                  <font>
                                     <Font name="Poppins Regular" size="18.0" />
                                  </font>
@@ -119,12 +119,12 @@
                               </Label>
                               <HBox spacing="10.0">
                                  <children>
-                                    <TextField id="street" prefWidth="190.0" promptText="Baker Street" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                    <TextField fx:id="street" prefWidth="190.0" promptText="Baker Street" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                                        <font>
                                           <Font name="Poppins Regular" size="18.0" />
                                        </font>
                                     </TextField>
-                                    <TextField id="number" prefWidth="80.0" promptText="221B" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                                    <TextField fx:id="number" prefWidth="80.0" promptText="221B" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                                        <font>
                                           <Font name="Poppins Regular" size="18.0" />
                                        </font>
@@ -140,7 +140,7 @@
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <DatePicker id="dateOfBirth" prefHeight="40.0" prefWidth="280.0" promptText="06 / 01 / 1853" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;" styleClass="date-picker" stylesheets="@../css/styles.css" />
+                              <DatePicker fx:id="dateOfBirth" prefHeight="40.0" prefWidth="280.0" promptText="06 / 01 / 1853" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;" styleClass="date-picker" stylesheets="@../css/styles.css" />
                            </children>
                         </VBox>
                      </children>
@@ -154,7 +154,7 @@
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <PasswordField id="password" prefHeight="40.0" prefWidth="280.0" promptText="Something good" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                              <PasswordField fx:id="password" prefHeight="40.0" prefWidth="280.0" promptText="Something good" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                                  <font>
                                     <Font name="Poppins Regular" size="18.0" />
                                  </font>
@@ -169,7 +169,7 @@
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <PasswordField id="passwordConfirmation" prefHeight="40.0" prefWidth="280.0" promptText="Repeat something good" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                              <PasswordField fx:id="passwordConfirmation" prefHeight="40.0" prefWidth="280.0" promptText="Repeat something good" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                                  <font>
                                     <Font name="Poppins Regular" size="18.0" />
                                  </font>

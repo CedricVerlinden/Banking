@@ -55,7 +55,7 @@
                      <Insets />
                   </VBox.margin>
                </Label>
-                    <TextField prefWidth="320.0" promptText="email@example.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                    <TextField fx:id="email" prefWidth="320.0" promptText="email@example.com" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                         <font>
                             <Font name="Poppins Regular" size="18.0" />
                         </font>
@@ -70,7 +70,7 @@
                      <Insets />
                   </VBox.margin>
                     </Label>
-                    <PasswordField prefWidth="320.0" promptText="Make sure it's correct" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
+                    <PasswordField fx:id="password" prefWidth="320.0" promptText="Make sure it's correct" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 4px;">
                         <font>
                             <Font name="Poppins Regular" size="18.0" />
                         </font>
