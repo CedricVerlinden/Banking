@@ -20,6 +20,14 @@ public class BaseController {
         return screenManager;
     }
 
+    public void setScreen(String name) {
+        if (screenManager == null) {
+            return;
+        }
+
+        screenManager.setScreen(name);
+    }
+
     public Database getDatabase() {
         return database;
     }
