@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.cedricverlinden.banking.constants.Role;
 import com.cedricverlinden.banking.models.Account;
-import com.cedricverlinden.banking.models.Role;
 import com.cedricverlinden.banking.models.User;
 
 import java.sql.PreparedStatement;

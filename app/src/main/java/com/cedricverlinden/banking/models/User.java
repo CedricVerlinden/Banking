@@ -5,6 +5,8 @@ import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.cedricverlinden.banking.constants.Role;
+
 public class User {
 
     private String identifier;
