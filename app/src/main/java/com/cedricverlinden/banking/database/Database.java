@@ -3,6 +3,7 @@ package com.cedricverlinden.banking.database;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -13,7 +14,6 @@ import java.util.UUID;
 import com.cedricverlinden.banking.models.Account;
 import com.cedricverlinden.banking.models.Role;
 import com.cedricverlinden.banking.models.User;
-import com.cedricverlinden.banking.utils.Hasher;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,28 +51,30 @@ public class Database {
         return connection;
     }
 
-    public void createUser(User user) {
+    public void createUser(String firstName, String lastName, String email, String phoneNumber, String street,
+            String number,
+            String password, Date dateOfBirth) {
         String identifier = UUID.randomUUID().toString();
-        String dateOfBirth = user.getDateOfBirth().toString();
 
         String sql = "INSERT INTO users (id, role, firstname, lastname, email, phonenumber, address, password, dateOfBirth) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, identifier);
             ps.setString(2, Role.CLIENT.toString());
-            ps.setString(3, user.getFirstName());
-            ps.setString(4, user.getLastName());
-            ps.setString(5, user.getEmail());
-            ps.setString(6, user.getPhoneNumber());
-            ps.setString(7, user.getAddress());
-            ps.setString(8, user.getPassword());
-            ps.setString(9, dateOfBirth);
+            ps.setString(3, firstName);
+            ps.setString(4, lastName);
+            ps.setString(5, email);
+            ps.setString(6, phoneNumber);
+            ps.setString(7, street + " " + number);
+            ps.setString(8, password);
+            ps.setDate(9, dateOfBirth);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public User verifyUser(String userEmail, String userPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public User verifyUser(String userEmail, String userPassword)
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
         String sql = "SELECT * FROM users WHERE email = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, userEmail);
@@ -82,13 +84,11 @@ public class Database {
             }
 
             String password = rs.getString("password");
-            boolean valid = Hasher.verifyPassword(userPassword, password.getBytes());
-
-            if (!valid) {
+            if (!userPassword.equals(password)) {
                 return null;
             }
 
-            // String id = rs.getString("id");
+            String id = rs.getString("id");
             Role role = Role.valueOf(rs.getString("role"));
             String firstname = rs.getString("firstname");
             String lastname = rs.getString("lastname");
@@ -98,8 +98,8 @@ public class Database {
             LocalDate dateOfBirth = LocalDate.parse(rs.getString("dateOfBirth"));
 
             List<Account> accounts = new ArrayList<>();
-            
-            return new User(role, firstname, lastname, email, phonenumber, address, accounts, dateOfBirth);
+
+            return new User(id, role, firstname, lastname, email, phonenumber, address, accounts, dateOfBirth);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -4,7 +4,7 @@ public class Account {
 
     private String accountNumber;
     private double balance;
-    
+
     private User user;
 
     public Account(String accountNumber, User user, double balance) {
