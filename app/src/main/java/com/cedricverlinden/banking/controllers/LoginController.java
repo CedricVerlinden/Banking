@@ -19,17 +19,19 @@ public class LoginController extends BaseController {
 
     @FXML
     private void doesntHaveAccount() {
-        setScreen("Register");
+        getScreenManager().setScreen("Register");
     }
 
     @FXML
     private void login() throws NoSuchAlgorithmException, InvalidKeySpecException {
         User verifiedUser = getDatabase().verifyUser(email.getText(), password.getText());
+        email.clear();
+        password.clear();
 
         if (verifiedUser == null) {
             return;
         }
-
-        setScreen("Home");
+        
+        getScreenManager().setScreen("Home");
     }
 }

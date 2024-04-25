@@ -3,10 +3,13 @@ package com.cedricverlinden.banking.controllers;
 import com.cedricverlinden.banking.ScreenManager;
 import com.cedricverlinden.banking.database.Database;
 
+import javafx.fxml.FXML;
+
 public class BaseController {
+    
+    private final Database database;
 
     private ScreenManager screenManager;
-    private final Database database;
 
     public BaseController() {
         this.database = Database.getInstance();
@@ -20,15 +23,12 @@ public class BaseController {
         return screenManager;
     }
 
-    public void setScreen(String name) {
-        if (screenManager == null) {
-            return;
-        }
-
-        screenManager.setScreen(name);
-    }
-
     public Database getDatabase() {
         return database;
+    }
+
+    @FXML
+    private void logout() {
+        screenManager.setScreen("Login");
     }
 }

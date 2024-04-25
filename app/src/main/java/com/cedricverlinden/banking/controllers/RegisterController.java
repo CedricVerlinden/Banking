@@ -59,7 +59,7 @@ public class RegisterController extends BaseController {
         try {
             getDatabase().createUser(firstName, lastName, email, phoneNumber, street, number, password, dateOfBirth);
 
-            setScreen("Login");
+            getScreenManager().setScreen("Login");
         } catch (Exception e) {
             // TODO: Add error message
             e.printStackTrace();
@@ -68,6 +68,6 @@ public class RegisterController extends BaseController {
 
     @FXML
     private void alreadyHasAccount() {
-        setScreen("Login");
+        getScreenManager().setScreen("Login");
     }
 }

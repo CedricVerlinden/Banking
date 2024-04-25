@@ -19,7 +19,6 @@ public class ScreenManager {
         this.root = root;
     }
 
-    // Load and store a screen with its controller
     public void addScreen(String name, String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
@@ -31,7 +30,6 @@ public class ScreenManager {
         }
     }
 
-    // Set the current screen to the one identified by name
     public void setScreen(String name) {
         if (screenMap.containsKey(name)) {
             root.getChildren().clear();

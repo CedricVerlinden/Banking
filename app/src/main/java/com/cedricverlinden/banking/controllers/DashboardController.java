@@ -1,16 +1,20 @@
 package com.cedricverlinden.banking.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 
 public class DashboardController extends BaseController {
 
     @FXML
+    Text greeting;
+    
+    @FXML
     private void goToAccounts() {
-        setScreen("Accounts");
+        getScreenManager().setScreen("Accounts");
     }
 
     @FXML
     private void goToTools() {
-        setScreen("Tools");
+        getScreenManager().setScreen("Tools");
     }
-}
+ }
