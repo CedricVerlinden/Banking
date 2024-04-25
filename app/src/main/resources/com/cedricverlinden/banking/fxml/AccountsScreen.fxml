@@ -15,7 +15,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="720.0" spacing="20.0">
          <children>
-            <Button onAction="#goToHome" alignment="BASELINE_CENTER" graphicTextGap="8.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Home" textFill="WHITE">
+            <Button alignment="BASELINE_CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Home" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -30,7 +30,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="BASELINE_CENTER" defaultButton="true" graphicTextGap="8.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Accounts" textFill="WHITE">
+            <Button alignment="BASELINE_CENTER" graphicTextGap="8.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Accounts" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -45,7 +45,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button onAction="#goToTools" alignment="BASELINE_CENTER" graphicTextGap="8.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Tools" textFill="WHITE">
+            <Button alignment="BASELINE_CENTER" graphicTextGap="8.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToConverter" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Converter" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -55,7 +55,7 @@
                <graphic>
                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../icons/tools.png" />
+                        <Image url="@../icons/converter.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -74,16 +74,11 @@
                         <Font name="Poppins Medium" size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#00000066" strokeType="OUTSIDE" strokeWidth="0.0" text="ID: AAA-AAA-AAA-AAA">
-                     <font>
-                        <Font name="Poppins Regular" size="14.0" />
-                     </font>
-                  </Text>
                </children>
             </VBox>
             <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                <children>
-                  <Button onAction="#logout" alignment="BASELINE_CENTER" mnemonicParsing="false" style="-fx-background-color: red;" text="Log out" textFill="WHITE">
+                  <Button alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: red;" text="Log out" textFill="WHITE">
                      <font>
                         <Font name="Poppins Regular" size="16.0" />
                      </font>

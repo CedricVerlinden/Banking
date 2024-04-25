@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cedricverlinden.banking.controllers.ConverterController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="720.0" spacing="20.0">
+         <children>
+            <Button alignment="BASELINE_CENTER" graphicTextGap="8.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Home" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Poppins Regular" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_CENTER" defaultButton="true" graphicTextGap="8.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToAccounts" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Accounts" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Poppins Regular" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/accounts.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_CENTER" graphicTextGap="8.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Converter" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Poppins Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/converter.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="210.0">
+         <children>
+            <HBox alignment="CENTER" fillHeight="false" prefWidth="1070.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Convert currency">
+                           <font>
+                              <Font name="Poppins SemiBold" size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: red;" text="Log out" textFill="WHITE">
+                           <font>
+                              <Font name="Poppins Regular" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="12.0" left="16.0" right="16.0" top="12.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/logout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="632.0" prefWidth="1070.0">
+               <children>
+                  <VBox alignment="CENTER" fillWidth="false" spacing="24.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" spacing="6.0">
+                           <children>
+                              <Label text="From" />
+                              <ComboBox fx:id="fromCurrency" prefHeight="50.0" prefWidth="200.0" promptText="Currency" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 6px;" styleClass="combo-box" stylesheets="@../css/styles.css" visibleRowCount="7" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="fromInput" prefHeight="50.0" prefWidth="250.0" promptText="From" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 6px;">
+                           <font>
+                              <Font name="Poppins Regular" size="16.0" />
+                           </font></TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="16.0" HBox.hgrow="NEVER">
+                     <children>
+                        <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#switchCurrencies" style="-fx-background-color: transparant; -fx-border-radius: 6px;" text="Button">
+                           <graphic>
+                              <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/switch.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#convert" prefHeight="60.0" prefWidth="170.0" style="-fx-background-color: rgb(26, 86, 219);" text="Convert" textFill="WHITE">
+                           <font>
+                              <Font name="Poppins Medium" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" fillWidth="false" spacing="24.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" spacing="6.0">
+                           <children>
+                              <Label text="To" />
+                              <ComboBox fx:id="toCurrency" prefHeight="50.0" prefWidth="200.0" promptText="Currency" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 6px;" styleClass="combo-box" stylesheets="@../css/styles.css" visibleRowCount="7" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="toInput" editable="false" prefHeight="50.0" prefWidth="250.0" promptText="To" style="-fx-background-color: white; -fx-border-color: black; -fx-border-radius: 6px;">
+                           <font>
+                              <Font name="Poppins Regular" size="16.0" />
+                           </font></TextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
