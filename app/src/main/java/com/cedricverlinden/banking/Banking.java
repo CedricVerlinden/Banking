@@ -17,7 +17,6 @@ public class Banking extends Application {
 
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		primaryStage.centerOnScreen();
 
 		ScreenManager screenManager = new ScreenManager(root);
 
@@ -26,11 +25,11 @@ public class Banking extends Application {
 		screenManager.addScreen("Register", "fxml/RegisterScreen.fxml");
 
 		// Dashboard screens
-		screenManager.addScreen("Home", "fxml/DashboardScreen.fxml");
+		screenManager.addScreen("Dashboard", "fxml/DashboardScreen.fxml");
 		screenManager.addScreen("Accounts", "fxml/AccountsScreen.fxml");
-		screenManager.addScreen("Tools", "fxml/ToolsScreen.fxml");
+		screenManager.addScreen("Converter", "fxml/ConverterScreen.fxml");
 
-		screenManager.setScreen("Login");
+		screenManager.setScreen("Dashboard");
 	}
 
 	public static void main(String[] args) {
