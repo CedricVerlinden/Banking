@@ -25,7 +25,9 @@ public class Banking extends Application {
 		screenManager.addScreen("Register", "fxml/RegisterScreen.fxml");
 
 		// Dashboard screens
-		screenManager.addScreen("Home", "fxml/HomeScreen.fxml");
+		screenManager.addScreen("Home", "fxml/DashboardScreen.fxml");
+		screenManager.addScreen("Accounts", "fxml/AccountsScreen.fxml");
+		screenManager.addScreen("Tools", "fxml/ToolsScreen.fxml");
 
 		screenManager.setScreen("Login");
 	}
