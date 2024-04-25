@@ -2,13 +2,7 @@ package com.cedricverlinden.banking.controllers;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.cedricverlinden.banking.models.Account;
-import com.cedricverlinden.banking.models.Role;
-import com.cedricverlinden.banking.models.User;
+import java.sql.Date;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -46,17 +40,15 @@ public class RegisterController extends BaseController {
 
     @FXML
     private void registerNewUser() throws NoSuchAlgorithmException, InvalidKeySpecException {
-        String firstname = this.firstname.getText();
-        String lastname = this.lastname.getText();
+        String firstName = this.firstname.getText();
+        String lastName = this.lastname.getText();
         String email = this.email.getText();
-        String phone = this.phone.getText();
+        String phoneNumber = this.phone.getText();
         String street = this.street.getText();
         String number = this.number.getText();
-        LocalDate dateOfBirth = this.dateOfBirth.getValue();
+        Date dateOfBirth = Date.valueOf(this.dateOfBirth.getValue());
         String password = this.password.getText();
         String passwordConfirmation = this.passwordConfirmation.getText();
-
-        List<Account> accounts = new ArrayList<>();
 
         if (!password.equals(passwordConfirmation)) {
             this.password.clear();
@@ -64,14 +56,10 @@ public class RegisterController extends BaseController {
             return;
         }
 
-        User user = new User(Role.CLIENT, firstname, lastname, email, phone, street + " " + number, password, accounts,
-                dateOfBirth);
         try {
-            getDatabase().createUser(user);
+            getDatabase().createUser(firstName, lastName, email, phoneNumber, street, number, password, dateOfBirth);
 
-            if (getScreenManager() != null) {
-                getScreenManager().setScreen("Login");
-            }
+            setScreen("Login");
         } catch (Exception e) {
             // TODO: Add error message
             e.printStackTrace();
@@ -80,8 +68,6 @@ public class RegisterController extends BaseController {
 
     @FXML
     private void alreadyHasAccount() {
-        if (getScreenManager() != null) {
-            getScreenManager().setScreen("Login");
-        }
+        setScreen("Login");
     }
 }
