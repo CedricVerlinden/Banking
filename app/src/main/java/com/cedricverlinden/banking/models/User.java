@@ -5,10 +5,9 @@ import java.security.spec.InvalidKeySpecException;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.cedricverlinden.banking.utils.Hasher;
-
 public class User {
 
+    private String identifier;
     private Role role;
 
     private String firstName;
@@ -18,7 +17,6 @@ public class User {
     private String phoneNumber;
     private String address;
 
-    private String password;
     private List<Account> accounts;
 
     private LocalDate dateOfBirth;
@@ -26,34 +24,26 @@ public class User {
     public User() {
     }
 
-    public User(Role role, String firstName, String lastName, String email, String phoneNumber, String address,
-            String password,
+    public User(String identifier, Role role, String firstName, String lastName, String email, String phoneNumber,
+            String address,
             List<Account> accounts, LocalDate dateOfBirth)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
+        this.identifier = identifier;
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-
-        this.password = Hasher.bytesToBase64(Hasher.hashPassword(password));
-
         this.accounts = accounts;
         this.dateOfBirth = dateOfBirth;
     }
 
-    public User(Role role, String firstName, String lastName, String email, String phoneNumber, String address,
-            List<Account> accounts, LocalDate dateOfBirth)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
-        this.role = role;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.accounts = accounts;
-        this.dateOfBirth = dateOfBirth;
+    /*
+     * Identifier
+     */
+    public String getIdentifier() {
+        return identifier;
     }
 
     /*
@@ -96,10 +86,6 @@ public class User {
     /*
      * Account Details
      */
-    public String getPassword() {
-        return password;
-    }
-
     public List<Account> getAccounts() {
         return accounts;
     }
