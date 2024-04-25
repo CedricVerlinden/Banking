@@ -6,11 +6,11 @@ public class AccountsController extends BaseController {
 
     @FXML
     private void goToHome() {
-        getScreenManager().setScreen("Home");
+        getScreenManager().setScreen("Dashboard");
     }
 
     @FXML
-    private void goToTools() {
-        getScreenManager().setScreen("Tools");
+    private void goToConverter() {
+        getScreenManager().setScreen("Converter");
     }
 }

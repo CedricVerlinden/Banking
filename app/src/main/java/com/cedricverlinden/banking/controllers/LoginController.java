@@ -32,6 +32,6 @@ public class LoginController extends BaseController {
             return;
         }
         
-        getScreenManager().setScreen("Home");
+        getScreenManager().setScreen("Dashboard");
     }
 }
