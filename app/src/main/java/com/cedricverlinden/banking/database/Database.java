@@ -118,4 +118,68 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public void addAccount(String accountName) {
+        String identifier = UUID.randomUUID().toString();
+
+        String sql = "INSERT INTO accounts (id, name) VALUES (?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, identifier);
+            ps.setString(2, accountName);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Account> getAccounts() {
+        String sql = "SELECT * FROM accounts";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            ArrayList<Account> accounts = new ArrayList<>();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String name = rs.getString("name");
+                Double balance = rs.getDouble("balance");
+                accounts.add(new Account(id, name, balance));
+            }
+
+            return accounts;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void createTransaction(String accountName, Double amount, boolean deposit) {
+        Double balance = 0.0;
+        String sql = "SELECT * FROM accounts WHERE name = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, accountName);
+            ResultSet rs = ps.executeQuery();
+            System.out.println(rs);
+            if (rs.next()) {
+                System.out.println("Has next");
+                balance = rs.getDouble("balance");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (deposit) {
+            balance += amount;
+        } else {
+            balance -= amount;
+        }
+
+        sql = "UPDATE accounts SET balance = ? WHERE name = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setDouble(1, balance);
+            ps.setString(2, accountName);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
