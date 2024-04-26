@@ -8,7 +8,6 @@ public class DashboardController extends BaseController {
     @FXML
     Text greeting;
 
-    
     @FXML
     private void goToAccounts() {
         getScreenManager().setScreen("Accounts");
@@ -18,4 +17,4 @@ public class DashboardController extends BaseController {
     private void goToConverter() {
         getScreenManager().setScreen("Converter");
     }
- }
+}

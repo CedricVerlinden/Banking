@@ -31,7 +31,7 @@ public class LoginController extends BaseController {
         if (verifiedUser == null) {
             return;
         }
-        
+
         getScreenManager().setScreen("Dashboard");
     }
 }

@@ -3,13 +3,12 @@ package com.cedricverlinden.banking.models;
 public class Account {
 
     private String accountNumber;
+    private String name;
     private double balance;
 
-    private User user;
-
-    public Account(String accountNumber, User user, double balance) {
+    public Account(String accountNumber, String name, double balance) {
         this.accountNumber = accountNumber;
-        this.user = user;
+        this.name = name;
         this.balance = balance;
     }
 
@@ -17,12 +16,12 @@ public class Account {
         return accountNumber;
     }
 
-    public double getBalance() {
-        return balance;
+    public String getName() {
+        return name;
     }
 
-    public User getUser() {
-        return user;
+    public double getBalance() {
+        return balance;
     }
 
     public void setBalance(double balance) {
