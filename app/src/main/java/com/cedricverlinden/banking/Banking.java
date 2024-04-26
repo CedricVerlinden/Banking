@@ -1,6 +1,5 @@
 package com.cedricverlinden.banking;
 
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -29,7 +28,7 @@ public class Banking extends Application {
 		screenManager.addScreen("Accounts", "fxml/AccountsScreen.fxml");
 		screenManager.addScreen("Converter", "fxml/ConverterScreen.fxml");
 
-		screenManager.setScreen("Dashboard");
+		screenManager.setScreen("Login");
 	}
 
 	public static void main(String[] args) {

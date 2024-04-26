@@ -31,16 +31,18 @@ public class ScreenManager {
     }
 
     public void setScreen(String name) {
-        if (screenMap.containsKey(name)) {
-            root.getChildren().clear();
-            root.getChildren().add(screenMap.get(name).getKey());
+        if (!screenMap.containsKey(name)) {
+            return;
+        }
 
-            Object controller = screenMap.get(name).getValue();
-            if (controller instanceof BaseController) {
-                ((BaseController) controller).setScreenManager(this);
-            }
-        } else {
-            System.err.println("Screen not found: " + name);
+        root.getChildren().clear();
+        root.getChildren().add(screenMap.get(name).getKey());
+
+        Object controller = screenMap.get(name).getValue();
+        System.out.println(controller.getClass().getName());
+        if (controller instanceof BaseController) {
+            System.out.println("Does extend it..");
+            ((BaseController) controller).setScreenManager(this);
         }
     }
 }
